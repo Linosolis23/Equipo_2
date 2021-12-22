@@ -1,2 +1,2 @@
-# Equipo_2
+# Proyecto juego
  
