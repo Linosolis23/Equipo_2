@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,21 +9,23 @@
     <script src="../js/javascript.js"></script>
 
 </head>
-<body >
-    <table onclick="mostrarcarta()">
+
+<body>
+    <table>
         <tr>
-            <td><img id="carta1"  src="../img/carta_bocaabajo.jpg"></td>
-            <td><img id="carta2" src="../img/carta_bocaabajo.jpg"> </td>
-            <td><img id="carta3" src="../img/carta_bocaabajo.jpg"> </td>
-            <td><img id="carta4" src="../img/carta_bocaabajo.jpg"> </td>        
+            <td class="carta1" id="fila1" onclick="comprobarCarta('fila1')"><img id="carta1" src="../img/carta_bocaabajo.jpg"></td>
+            <td class="carta2" id="fila2" onclick="comprobarCarta('fila2')"><img id="carta2" src="../img/carta_bocaabajo.jpg"> </td>
+            <td class="carta3" id="fila3" onclick="comprobarCarta('fila3')"><img id="carta3" src="../img/carta_bocaabajo.jpg"> </td>
+            <td class="carta4" id="fila4" onclick="comprobarCarta('fila4')"><img id="carta4" src="../img/carta_bocaabajo.jpg"> </td>
         </tr>
         <tr>
-            <td><img id="carta5"  src="../img/carta_bocaabajo.jpg"></td>
-            <td><img id="carta6" src="../img/carta_bocaabajo.jpg"> </td>
-            <td><img id="carta7" src="../img/carta_bocaabajo.jpg"> </td>
-            <td><img id="carta8" src="../img/carta_bocaabajo.jpg"> </td>        
+            <td class="carta2" id="fila5" onclick="comprobarCarta('fila5')"><img id="carta5" src="../img/carta_bocaabajo.jpg"></td>
+            <td class="carta3" id="fila6" onclick="comprobarCarta('fila6')"><img id="carta6" src="../img/carta_bocaabajo.jpg"> </td>
+            <td class="carta4" id="fila7" onclick="comprobarCarta('fila7')"><img id="carta7" src="../img/carta_bocaabajo.jpg"> </td>
+            <td class="carta1" id="fila8" onclick="comprobarCarta('fila8')"><img id="carta8" src="../img/carta_bocaabajo.jpg"> </td>
         </tr>
-  
+
     </table>
 </body>
+
 </html>
