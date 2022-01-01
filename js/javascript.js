@@ -7,8 +7,12 @@ function syncDelay(milliseconds) {
     }
 }
 
+var contador = 0;
 
 function mostrarCarta(fila) {
+
+    console.log("entrando mostrar");
+
 
     if (fila == "fila1") {
         document.getElementById('carta1').src = "../img/carta1.png";
@@ -29,10 +33,15 @@ function mostrarCarta(fila) {
     }
 
 
+    comprobarCarta(fila);
+
+
+
 }
 
 function ocultarCarta(fila) {
-
+    syncDelay(1000);
+    console.log("entrando en ocultar carta con la fila" + fila);
     if (fila == "fila1") {
         document.getElementById('carta1').src = "../img/carta_bocaabajo.jpg";
     } else if (fila == "fila2") {
@@ -53,137 +62,58 @@ function ocultarCarta(fila) {
 
 }
 
+
+
+
 var puntuacion = 0;
-var carta1;
-var carta2;
-var cartafila1;
-var cartafila2;
+
+var carta1Id = undefined;
+var carta2Id = undefined;
+var cartaclase1 = undefined;
+var cartaclase2 = undefined;
+
 
 function comprobarCarta(fila) {
+    contador++;
+    console.log(contador);
+    if (contador == 1) {
+        console.log("primer if comprobar carta");
+        var ele = document.getElementById(fila);
 
-    if (carta1 == undefined) {
-        var ele1 = document.getElementById(fila);
-
-        console.log("1 if");
-        carta1 = ele1.className;
-
-        cartafila1 = fila;
-        console.log(carta1);
-        console.log(mostrarCarta(fila));
-        mostrarCarta(cartafila1);
-
-    } else if (carta2 == undefined) {
+        carta1Id = fila
+        cartaclase1 = ele.className;
 
 
-        var ele2 = document.getElementById(fila);
+    } else if (contador == 2) {
 
-        console.log("2 if");
+        console.log("segundo if comprobar carta");
+        var ele = document.getElementById(fila);
 
-        carta2 = ele2.className;
-        cartafila2 = fila
-        console.log(carta1);
-        console.log(carta2);
-        console.log(fila);
-        console.log(cartafila1);
-
-        console.log(cartafila2);
-        mostrarCarta(cartafila2);
-
-
-        if (carta1 == carta2 && (cartafila1 != cartafila2)) {
-            console.log("entrando if de clases");
-
-            carta1 = undefined;
-            carta2 = undefined;
-            cartafila1 = undefined;
-            cartafila2 = undefined;
-            puntuacion++;
-
-        } else {
-            syncDelay(2000);
-            console.log("ocultar carta");
-            console.log(cartafila1);
-            console.log(cartafila2);
-
-            ocultarCarta(cartafila1);
-
-            ocultarCarta(cartafila2);
-            syncDelay(2000);
-            carta1 = undefined;
-            carta2 = undefined;
-            cartafila1 = undefined;
-            cartafila2 = undefined;
-
-        }
+        carta2Id = fila
+        cartaclase2 = ele.className;
 
     }
+    console.log(carta1Id);
+    console.log(cartaclase1);
+    console.log(carta2Id);
+    console.log(cartaclase2);
+    if (carta1Id != carta2Id && cartaclase1 == cartaclase2 && (cartaclase1 || cartaclase2 != undefined)) {
+        console.log("LAS CARTAS SON IGUALES");
+        puntuacion++;
+        contador = 0;
+        carta1Id = undefined;
+        carta2Id = undefined;
+        cartaclase1 = undefined;
+        cartaclase2 = undefined;
+        console.log(puntuacion);
+    } else if (contador == 2) {
+        ocultarCarta(carta1Id);
+        ocultarCarta(carta2Id);
+        contador = 0;
+        carta1Id = undefined;
+        carta2Id = undefined;
+        cartaclase1 = undefined;
+        cartaclase2 = undefined;
 
-
+    }
 }
-// if (carta1 && carta2 == undefined) {
-//     console.log(carta1);
-//     console.log(carta2);
-
-// } else {
-
-
-//     var carta1 = mostrarCarta(fila);
-//     var carta2 = mostrarCarta(fila);
-//     console.log(carta1);
-//     console.log(carta2);
-
-//     if (carta1 == carta2) {
-//         return puntuacion++;
-//     } else {
-//         ocultarCarta(carta1);
-//         ocultarCarta(carta2);
-//     }
-
-// }
-
-
-// function comprobarCarta(fila, clase) {
-//     var carta1Fila;
-//     var carta2Fila;
-//     console.log(puntuacion);
-//     console.log(clase);
-//     console.log(fila);
-//     console.log(carta1Fila);
-//     console.log(carta2Fila);
-
-//     if (carta1Fila == undefined) {
-//        
-
-//         mostrarCarta(fila);
-
-//         carta1Fila = fila;
-//         carta1Clase = clase;
-//         console.log("entrando 1 if");
-
-//         ele1.removeEventListener("click", mostrarCarta);
-//     } else if (carta2Fila == undefined) {
-//         var ele2 = document.getElementById(fila);
-//         ele2.addEventListener("click", mostrarCarta);
-//         mostrarCarta(fila);
-
-//         carta2Fila = fila;
-//         carta2Clase = clase;
-//         console.log(carta1Fila);
-//         console.log(carta2Fila);
-//         ele2.removeEventListener("click", mostrarCarta);
-//         console.log(carta1Clase);
-//         console.log(carta2Clase);
-//         if (carta1Clase == carta2Clase) {
-//             var carta1Fila = undefined;
-//             var carta1Clase = undefined;
-//             var carta2Fila = undefined;
-//             var carta2Clase = undefined;
-//             return puntuacion++;
-//         } else {
-//             console.log("probando");
-//             ocultarCarta(carta1Fila);
-//             ocultarCarta(carta2Fila);
-
-//         }
-
-//     }
