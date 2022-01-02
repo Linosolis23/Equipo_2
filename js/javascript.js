@@ -40,7 +40,6 @@ function mostrarCarta(fila) {
 }
 
 function ocultarCarta(fila) {
-    syncDelay(1000);
     console.log("entrando en ocultar carta con la fila" + fila);
     if (fila == "fila1") {
         document.getElementById('carta1').src = "../img/carta_bocaabajo.jpg";
@@ -107,8 +106,8 @@ function comprobarCarta(fila) {
         cartaclase2 = undefined;
         console.log(puntuacion);
     } else if (contador == 2) {
-        setTimeout(ocultarCarta, 3000, carta1Id);
-        setTimeout(ocultarCarta, 3000, carta2Id);
+        setTimeout(ocultarCarta, 300, carta1Id);
+        setTimeout(ocultarCarta, 300, carta2Id);
         contador = 0;
         carta1Id = undefined;
         carta2Id = undefined;
