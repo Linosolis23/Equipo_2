@@ -107,8 +107,8 @@ function comprobarCarta(fila) {
         cartaclase2 = undefined;
         console.log(puntuacion);
     } else if (contador == 2) {
-        ocultarCarta(carta1Id);
-        ocultarCarta(carta2Id);
+        setTimeout(ocultarCarta, 3000, carta1Id);
+        setTimeout(ocultarCarta, 3000, carta2Id);
         contador = 0;
         carta1Id = undefined;
         carta2Id = undefined;
