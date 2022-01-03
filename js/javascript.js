@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //variable para contar los numeros de clicks
 var contador = 0;
 // variable con la puntuacion
@@ -39,19 +38,9 @@ function comprobanteFila(fila) {
 //funcion que genera numero random
 function numeroRandom(min, max) {
     return Math.ceil(Math.random() * (max - min) + min);
-=======
-//la puntuacion debe de ser una variable fuera de las funciones para que siemrpe empice el juego desde 0
-function syncDelay(milliseconds) {
-    var start = new Date().getTime();
-    var end = 0;
-    while ((end - start) < milliseconds) {
-        end = new Date().getTime();
-    }
->>>>>>> parent of 299a6b0 (Bugs arreglados)
 }
 
-var contador = 0;
-
+//funcion para mostrar las cartas boca arriba
 function mostrarCarta(fila) {
 
     //comprobamos si la fila ya esta en el array de filas llamadas
@@ -59,7 +48,6 @@ function mostrarCarta(fila) {
 
         console.log("entrando mostrar");
 
-<<<<<<< HEAD
         var numeroAleatorio = numeroRandom(0, 4);
 
         var lastChar = fila.substr(fila.length - 1);
@@ -71,9 +59,6 @@ function mostrarCarta(fila) {
             var numeroAleatorio = numeroRandom(0, 4);
 
             var cartaDestapada = document.getElementById('carta' + lastChar).src = "../img/carta" + numeroAleatorio + ".png";
-=======
-    comprobarCarta(fila);
->>>>>>> parent of 299a6b0 (Bugs arreglados)
 
         }
 
@@ -85,6 +70,7 @@ function mostrarCarta(fila) {
 
 }
 
+//funcion para ocultar las cartas
 function ocultarCarta(fila) {
 
     var lastChar = fila.substr(fila.length - 1);
@@ -95,24 +81,16 @@ function ocultarCarta(fila) {
 
 
 
-<<<<<<< HEAD
 
 //variables necesarias para las cartas
 var filaCarta1 = undefined;
 var filaCarta2 = undefined;
-=======
-var puntuacion = 0;
-
-var carta1Id = undefined;
-var carta2Id = undefined;
->>>>>>> parent of 299a6b0 (Bugs arreglados)
 var cartaclase1 = undefined;
 var cartaclase2 = undefined;
 cartaNombre1 = undefined;
 cartaNombre2 = undefined;
 
 
-<<<<<<< HEAD
 //funcion que comprueba las cartas
 function comprobarCarta(fila, cartaDestapada) {
     console.log(fila);
@@ -120,23 +98,13 @@ function comprobarCarta(fila, cartaDestapada) {
     console.log("variables inicio funcion");
 
     if (filaCarta1 == undefined) {
-=======
-function comprobarCarta(fila) {
-    contador++;
-    console.log(contador);
-    if (contador == 1) {
->>>>>>> parent of 299a6b0 (Bugs arreglados)
         console.log("primer if comprobar carta");
 
 
         filaCarta1 = fila
         cartaNombre1 = cartaDestapada;
 
-<<<<<<< HEAD
     } else if (filaCarta2 == undefined) {
-=======
-    } else if (contador == 2) {
->>>>>>> parent of 299a6b0 (Bugs arreglados)
 
         console.log("segundo if comprobar carta");
 
@@ -145,7 +113,6 @@ function comprobarCarta(fila) {
         cartaNombre2 = cartaDestapada;
 
     }
-<<<<<<< HEAD
 
     console.log("variables despues de los if de undefined");
 
@@ -220,29 +187,5 @@ function comprobarCarta(fila) {
         }
 
 
-=======
-    console.log(carta1Id);
-    console.log(cartaclase1);
-    console.log(carta2Id);
-    console.log(cartaclase2);
-    if (carta1Id != carta2Id && cartaclase1 == cartaclase2 && (cartaclase1 || cartaclase2 != undefined)) {
-        console.log("LAS CARTAS SON IGUALES");
-        puntuacion++;
-        contador = 0;
-        carta1Id = undefined;
-        carta2Id = undefined;
-        cartaclase1 = undefined;
-        cartaclase2 = undefined;
-        console.log(puntuacion);
-    } else if (contador == 2) {
-        setTimeout(ocultarCarta, 300, carta1Id);
-        setTimeout(ocultarCarta, 300, carta2Id);
-        contador = 0;
-        carta1Id = undefined;
-        carta2Id = undefined;
-        cartaclase1 = undefined;
-        cartaclase2 = undefined;
-
->>>>>>> parent of 299a6b0 (Bugs arreglados)
     }
 }
