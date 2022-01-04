@@ -145,3 +145,37 @@ function comprobarCarta(fila, cartaDestapada) {
         } //cierre if contador == 2
     } //cierre if comprobar final del juego
 } // cierre final funcion
+
+function cronometro(){
+            
+    /*variables de tiempo*/
+    var min = 0;
+    var seg = 0;
+    
+    /*ingresamos los valores en el html*/
+    s = document.getElementById("segundos");
+    m = document.getElementById("minutos");
+
+    /*creamos una funcion para que corra el tiempo*/
+        tiempoGame = setInterval(function() {
+            seg++;
+            
+            /*conversor de segundos a minutos*/
+         if(seg==60) {
+            seg=0;
+             min++;
+          
+        }
+       /*convertimos los segundos en 2 digitos*/
+       /*esto hace que hasta que no sea 9 haya un 0 a la izquierda*/
+        var segundos = seg<=9?'0'+seg:seg;
+        var minuntos = min<=9?'0'+min:min;
+         /*le decimos al html que coga el tiempo*/
+        s.innerHTML = segundos;
+        m.innerHTML = minuntos;
+
+    }
+        /*1000 milisegundos son 1 segundo*/
+    ,1000);
+}
+
