@@ -9,8 +9,12 @@
     <script src="../js/javascript.js"></script>
 
 </head>
+<body onload="juego()">
+<p id="cronometro"> 𝓣𝓘𝓔𝓜𝓟𝓞:        
+    <span id="minutos">00</span>:<span id="segundos">00</span>
+</p>
 
-<body onload="mezclarCartas(),cronometro();">
+
     <table id="tablero">
         <tr>
             <td class="carta1" id="fila1" onclick="mostrarCarta('fila1')"><img id="carta1" src="../img/carta_bocaabajo.jpg"></td>

@@ -59,3 +59,10 @@ h1#inicio{
 a#inicio{
     text-decoration: none;
 }
+
+p#cronometro{
+    color: var(--color_inicio);
+    text-align: center;
+    font-size: 18px;
+
+}

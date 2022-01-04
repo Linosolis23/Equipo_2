@@ -1,3 +1,9 @@
+/*llamamos a todas las funciones*/
+function juego(){
+    mezclarCartas();
+    cronometro();   
+}
+
 //variable que cuenta el numero de intentos de juntar las parejas
 var intentos = 0;
 
@@ -146,6 +152,7 @@ function comprobarCarta(fila, cartaDestapada) {
     } //cierre if comprobar final del juego
 } // cierre final funcion
 
+/*creamos la funcion cronometro*/ 
 function cronometro(){
             
     /*variables de tiempo*/
