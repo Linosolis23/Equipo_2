@@ -84,6 +84,7 @@ function comprobarFinalJuego() {
     if (filasCartas.length == 8) {
         alert("Juego Finalizado con un total de " + intentos + " intentos.");
         alert("Gracias por participar");
+        document.location.href="../index.html";
         boleanoFinal = true;
     }
     return boleanoFinal;
