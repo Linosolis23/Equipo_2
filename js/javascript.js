@@ -89,7 +89,9 @@ function comprobarFinalJuego() {
     //comprobamos que todas las cartas estan guardadas en el array y si es asi ha finalizado el juego
     if (filasCartas.length == 8) {
         alert("Juego Finalizado con un total de " + intentos + " intentos.");
+        alert("Has tardado "+m.innerHTML+":"+s.innerHTML);
         alert("Gracias por participar");
+
         document.location.href="../index.html";
         boleanoFinal = true;
     }
