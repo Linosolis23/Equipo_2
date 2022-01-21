@@ -158,8 +158,8 @@ function comprobarCarta(fila, cartaDestapada) {
 function cronometro(){
             
     /*variables de tiempo*/
-    var min = 0;
-    var seg = 0;
+    var min = 1;
+    var seg = 60;
     
     /*ingresamos los valores en el html*/
     s = document.getElementById("segundos");
@@ -167,13 +167,18 @@ function cronometro(){
 
     /*creamos una funcion para que corra el tiempo*/
         tiempoGame = setInterval(function() {
-            seg++;
+            seg--;
             
             /*conversor de segundos a minutos*/
-         if(seg==60) {
-            seg=0;
-             min++;
+         if(seg==00) {
+            seg=60;
+             min--;
           
+        }
+        if(min==00 && seg==01){
+            
+        alert("GAME OVER El tiempo llegó a 0");
+        document.location.href="../index.html";
         }
        /*convertimos los segundos en 2 digitos*/
        /*esto hace que hasta que no sea 9 haya un 0 a la izquierda*/
