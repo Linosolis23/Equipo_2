@@ -1,7 +1,7 @@
 /*llamamos a todas las funciones*/
-function juego(){
+function juego() {
     mezclarCartas();
-    cronometro();   
+    cronometro();
 }
 
 //variable que cuenta el numero de intentos de juntar las parejas
@@ -28,7 +28,6 @@ var dibujoCarta2 = undefined;
 
 //funcion que comprueba si las filas ya han sido clicadas
 function comprobanteFila(fila) {
-
     var boleanoFila = false;
     //recorremos el array de filasCartas comprobando que las filas no han sido ya destapadas
     for (let index = 0; index < filasCartas.length; index++) {
@@ -43,33 +42,38 @@ function comprobanteFila(fila) {
 //funcion para barajar las cartas
 function mezclarCartas() {
     /*con esta funcion ordenamos el array de modo aleatorio ya que la 2º funcion nos devuelve numeros positivos y negativos
-     colocandolos delante de cada valor desordenandolos.
-    */
-    lista = lista.sort(function() { return Math.random() - 0.5 });
+                   colocandolos delante de cada valor desordenandolos.
+                  */
+    lista = lista.sort(function() {
+        return Math.random() - 0.5;
+    });
 }
 
 //funcion para mostrar las cartas boca arriba
 function mostrarCarta(fila) {
     var cartaDestapada;
     var lastChar = fila.substr(fila.length - 1);
-    var cartaDestapada = document.getElementById('carta' + lastChar).src = "../img/carta" + lista[lastChar - 1] + ".png";
+    var cartaDestapada = (document.getElementById("carta" + lastChar).src =
+        "../img/carta" + lista[lastChar - 1] + ".png");
+
     //llamamos a la funcion para comprobar las cartas pasandole la fila clicada y la carta destapada
     comprobarCarta(fila, cartaDestapada);
 }
 
 //funcion para ocultar las cartas
 function ocultarCarta(fila) {
-    //sacamos el ultimo caracter de fila 
+    //sacamos el ultimo caracter de fila
     var lastChar = fila.substr(fila.length - 1);
     //ocultamos la carta con el ultimo valor de las filas clicadas
-    document.getElementById('carta' + lastChar).src = "../img/carta_bocaabajo.jpg";
+    document.getElementById("carta" + lastChar).src =
+        "../img/carta_bocaabajo.jpg";
 }
 
 //funcion para guardar las variables de las cartas
 function guardaCartas(fila, cartaDestapada) {
     /*si la variable filaCarta1 no esta definida entra en este if primero
-    y la define, cuando esta se encuentra definida entra en el else definiendo la 2º
-    */
+                  y la define, cuando esta se encuentra definida entra en el else definiendo la 2º
+                  */
     if (filaCarta1 == undefined) {
         //en esta variable guardamos el numero de la fila clicada
         filaCarta1 = fila;
@@ -89,10 +93,10 @@ function comprobarFinalJuego() {
     //comprobamos que todas las cartas estan guardadas en el array y si es asi ha finalizado el juego
     if (filasCartas.length == 8) {
         alert("Juego Finalizado con un total de " + intentos + " intentos.");
-        alert("Has tardado "+m.innerHTML+":"+s.innerHTML);
+        alert("Has tardado " + m.innerHTML + ":" + s.innerHTML);
         alert("Gracias por participar");
 
-        document.location.href="../index.html";
+        document.location.href = "../index.html";
         boleanoFinal = true;
     }
     return boleanoFinal;
@@ -110,31 +114,45 @@ function comprobarCarta(fila, cartaDestapada) {
         if (contador == 2) {
             intentos++;
             /*comprobamos que la fila 1 y 2 no se encuentran ya levantadas, ademas de que el jugador no haya pulsado dos veces sobre la misma carta
-            si ambas condiciones se cumplen y ademas los dibujos de las cartas son iguales entramos en el if y sumamos puntos.
-            */
-            if (comprobanteFila(filaCarta1) == false && comprobanteFila(filaCarta2) == false && filaCarta1 != filaCarta2 && dibujoCarta1 == dibujoCarta2) {
+                                                      si ambas condiciones se cumplen y ademas los dibujos de las cartas son iguales entramos en el if y sumamos puntos.
+                                                      */
+            if (
+                comprobanteFila(filaCarta1) == false &&
+                comprobanteFila(filaCarta2) == false &&
+                filaCarta1 != filaCarta2 &&
+                dibujoCarta1 == dibujoCarta2
+            ) {
                 //sumamos un punto.
                 puntuacion++;
                 //guardamos en el array las filas con las cartas levantadas
                 filasCartas.push(filaCarta1);
                 filasCartas.push(filaCarta2);
                 /*
-                comprobamos si la 1º carta clicada no se encuentra volteada y si la segunda si
-                en este caso el usuario a realizado un 2º click sobre una carta ya volteada y ocultamos la 1º carta
-                 */
-            } else if (comprobanteFila(filaCarta1) == false && comprobanteFila(filaCarta2) == true) {
+                                                                        comprobamos si la 1º carta clicada no se encuentra volteada y si la segunda si
+                                                                        en este caso el usuario a realizado un 2º click sobre una carta ya volteada y ocultamos la 1º carta
+                                                                         */
+            } else if (
+                comprobanteFila(filaCarta1) == false &&
+                comprobanteFila(filaCarta2) == true
+            ) {
                 //llamamos a la funcion setTimeout para ocultar la carta con delay, esto hace que nuestro javascript asincrono actue de forma sincrona
                 setTimeout(ocultarCarta, 300, filaCarta1);
                 /*
-                comprobamos si la primera carta clicada se encuentra volteada y si la segunda carta clicada no se encuentra volteada
-                en este caso giramos la carta del 2 click.
-                */
-            } else if (comprobanteFila(filaCarta1) == true && comprobanteFila(filaCarta2) == false) {
+                                                                        comprobamos si la primera carta clicada se encuentra volteada y si la segunda carta clicada no se encuentra volteada
+                                                                        en este caso giramos la carta del 2 click.
+                                                                        */
+            } else if (
+                comprobanteFila(filaCarta1) == true &&
+                comprobanteFila(filaCarta2) == false
+            ) {
                 setTimeout(ocultarCarta, 300, filaCarta2);
                 /*
-                comprobamos que las dos cartas ya han sido volteadas
-                 */
-            } else if (comprobanteFila(filaCarta1) == true && comprobanteFila(filaCarta2) == true) {
+                                                                        comprobamos que las dos cartas ya han sido volteadas
+                                                                         */
+            } else if (
+                comprobanteFila(filaCarta1) == true &&
+                comprobanteFila(filaCarta2) == true
+            ) {
                 alert("Las cartas pulsadas ya se encuentran volteadas");
                 //en caso que no se cumpla ninguna de las anteriores ocultamos las dos cartas
             } else {
@@ -154,42 +172,58 @@ function comprobarCarta(fila, cartaDestapada) {
     } //cierre if comprobar final del juego
 } // cierre final funcion
 
-/*creamos la funcion cronometro*/ 
-function cronometro(){
-            
+/*creamos la funcion cronometro*/
+function cronometro() {
     /*variables de tiempo*/
     var min = 1;
     var seg = 60;
-    
+
     /*ingresamos los valores en el html*/
     s = document.getElementById("segundos");
     m = document.getElementById("minutos");
 
     /*creamos una funcion para que corra el tiempo*/
-        tiempoGame = setInterval(function() {
+    tiempoGame = setInterval(
+        function() {
             seg--;
-            
-            /*conversor de segundos a minutos*/
-         if(seg==00) {
-            seg=60;
-             min--;
-          
-        }
-        if(min==00 && seg==01){
-            
-        alert("GAME OVER El tiempo llegó a 0");
-        document.location.href="../index.html";
-        }
-       /*convertimos los segundos en 2 digitos*/
-       /*esto hace que hasta que no sea 9 haya un 0 a la izquierda*/
-        var segundos = seg<=9?'0'+seg:seg;
-        var minuntos = min<=9?'0'+min:min;
-         /*le decimos al html que coga el tiempo*/
-        s.innerHTML = segundos;
-        m.innerHTML = minuntos;
 
-    }
+            /*conversor de segundos a minutos*/
+            if (seg == 00) {
+                seg = 60;
+                min--;
+            }
+
+            if (min == 00 && seg == 01) {
+                alert("GAME OVER El tiempo llegó a 0");
+                document.location.href = "../index.html";
+            }
+            /*convertimos los segundos en 2 digitos*/
+            /*esto hace que hasta que no sea 9 haya un 0 a la izquierda*/
+            var segundos = seg <= 9 ? "0" + seg : seg;
+            var minuntos = min <= 9 ? "0" + min : min;
+            /*le decimos al html que coga el tiempo*/
+            s.innerHTML = segundos;
+            m.innerHTML = minuntos;
+        },
         /*1000 milisegundos son 1 segundo*/
-    ,1000);
+        1000
+    );
 }
 
+// Funcion flipped()
+// Da la vuelta a las cartas cuando se haga click en una clase "container" 
+function flipped() {
+    $(".container").flip({
+        axis: "y",
+        trigger: "click",
+    });
+}
+
+// PRUEBAS FLIP
+/*const cards = document.querySelectorAll('.container');
+
+function flip() {
+    this.classList.toggle('flip');
+}
+
+cards.forEach(card => card.addEventListener('click', flip));*/
