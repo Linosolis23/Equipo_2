@@ -1,7 +1,7 @@
 /*llamamos a todas las funciones*/
-function juego(){
+function juego() {
     mezclarCartas();
-    cronometro();   
+    cronometro();
 }
 
 //variable que cuenta el numero de intentos de juntar las parejas
@@ -76,10 +76,20 @@ function guardaCartas(fila, cartaDestapada) {
         //en esta guardamos el dibujo que se encuentra en ella
         dibujoCarta1 = cartaDestapada;
     } else {
+
+
         //en esta variable guardamos el numero de la fila clicada
         filaCarta2 = fila;
         //en esta guardamos el dibujo que se encuentra en ella
         dibujoCarta2 = cartaDestapada;
+
+        //comprueba si la carta pulsada es la misma y si es asi da un alert
+        if (filaCarta1 == filaCarta2) {
+            console.log("entrando en else");
+            alert("Ha pulsado sobre la misma carta");
+            filaCarta2 = undefined;
+            contador--;
+        }
     }
 }
 
@@ -89,10 +99,10 @@ function comprobarFinalJuego() {
     //comprobamos que todas las cartas estan guardadas en el array y si es asi ha finalizado el juego
     if (filasCartas.length == 8) {
         alert("Juego Finalizado con un total de " + intentos + " intentos.");
-        alert("Has tardado "+m.innerHTML+":"+s.innerHTML);
+        alert("Has tardado " + m.innerHTML + ":" + s.innerHTML);
         alert("Gracias por participar");
 
-        document.location.href="../index.html";
+        document.location.href = "../index.html";
         boleanoFinal = true;
     }
     return boleanoFinal;
@@ -154,42 +164,41 @@ function comprobarCarta(fila, cartaDestapada) {
     } //cierre if comprobar final del juego
 } // cierre final funcion
 
-/*creamos la funcion cronometro*/ 
-function cronometro(){
-            
+/*creamos la funcion cronometro*/
+function cronometro() {
+
     /*variables de tiempo*/
     var min = 1;
     var seg = 60;
-    
+
     /*ingresamos los valores en el html*/
     s = document.getElementById("segundos");
     m = document.getElementById("minutos");
 
     /*creamos una funcion para que corra el tiempo*/
-        tiempoGame = setInterval(function() {
+    tiempoGame = setInterval(function() {
             seg--;
-            
+
             /*conversor de segundos a minutos*/
-         if(seg==00) {
-            seg=60;
-             min--;
-          
-        }
-        if(min==00 && seg==01){
-            
-        alert("GAME OVER El tiempo llegó a 0");
-        document.location.href="../index.html";
-        }
-       /*convertimos los segundos en 2 digitos*/
-       /*esto hace que hasta que no sea 9 haya un 0 a la izquierda*/
-        var segundos = seg<=9?'0'+seg:seg;
-        var minuntos = min<=9?'0'+min:min;
-         /*le decimos al html que coga el tiempo*/
-        s.innerHTML = segundos;
-        m.innerHTML = minuntos;
+            if (seg == 00) {
+                seg = 60;
+                min--;
 
-    }
+            }
+            if (min == 00 && seg == 01) {
+
+                alert("GAME OVER El tiempo llegó a 0");
+                document.location.href = "../index.html";
+            }
+            /*convertimos los segundos en 2 digitos*/
+            /*esto hace que hasta que no sea 9 haya un 0 a la izquierda*/
+            var segundos = seg <= 9 ? '0' + seg : seg;
+            var minuntos = min <= 9 ? '0' + min : min;
+            /*le decimos al html que coga el tiempo*/
+            s.innerHTML = segundos;
+            m.innerHTML = minuntos;
+
+        }
         /*1000 milisegundos son 1 segundo*/
-    ,1000);
+        , 1000);
 }
-
