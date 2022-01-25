@@ -212,12 +212,12 @@ function cronometro() {
 
 // Funcion flipped()
 // Da la vuelta a las cartas cuando se haga click en una clase "container" 
-//function flipped() {
-//   $(".container").flip({
-//        axis: "y",
-//        trigger: "click",
-//    });
-//}
+function flipped() {
+    $(".container").flip({
+        axis: "y",
+        trigger: "click",
+    });
+}
 
 // PRUEBAS FLIP
 /*const cards = document.querySelectorAll('.container');
