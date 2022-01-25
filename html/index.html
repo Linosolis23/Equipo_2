@@ -6,120 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/css.css">
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
     <script src="../js/javascript.js"></script>
 
 </head>
-
 <body onload="juego()">
-    <p id="cronometro"> 𝓣𝓘𝓔𝓜𝓟𝓞:
-        <span id="minutos">02</span>:<span id="segundos">00</span>
-    </p>
+<p id="cronometro"> 𝓣𝓘𝓔𝓜𝓟𝓞:        
+    <span id="minutos">02</span>:<span id="segundos">00</span>
+</p>
+
 
     <table id="tablero">
         <tr>
-            <td>
-                <div id="container" class="container">
-                    <div id="fila1" class="card" onclick="flipped()">
-                        <div class="front" onclick="mostrarCarta('fila1')">
-                            <img class="img" src="../img/carta_bocaabajo.jpg">
-                        </div>
-                        <div class="back">
-                            <img id="carta1" src="">
-                        </div>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="container">
-                    <div id="fila2" class="card">
-                        <div class="front" onclick="mostrarCarta('fila2')">
-                            <img src="../img/carta_bocaabajo.jpg">
-                        </div>
-                        <div class="back">
-                            <img id="carta2" src="">
-                        </div>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="container">
-                    <div id="fila3" class="card">
-                        <div class="front" onclick="mostrarCarta('fila3')">
-                            <img src="../img/carta_bocaabajo.jpg">
-                        </div>
-                        <div class="back">
-                            <img id="carta3" src="">
-                        </div>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="container">
-                    <div id="fila4" class="card">
-                        <div class="front" onclick="mostrarCarta('fila4')">
-                            <img src="../img/carta_bocaabajo.jpg">
-                        </div>
-                        <div class="back">
-                            <img src="" id="carta4">
-                        </div>
-                    </div>
-                </div>
-            </td>
+            <td class="carta1" id="fila1" onclick="mostrarCarta('fila1')"><img id="carta1" src="../img/carta_bocaabajo.jpg"></td>
+            <td class="carta2" id="fila2" onclick="mostrarCarta('fila2')"><img id="carta2" src="../img/carta_bocaabajo.jpg"> </td>
+            <td class="carta3" id="fila3" onclick="mostrarCarta('fila3')"><img id="carta3" src="../img/carta_bocaabajo.jpg"> </td>
+            <td class="carta4" id="fila4" onclick="mostrarCarta('fila4')"><img id="carta4" src="../img/carta_bocaabajo.jpg"> </td>
         </tr>
         <tr>
-            <td>
-                <div class="container">
-                    <div id="fila5" class="card">
-                        <div class="front" onclick="mostrarCarta('fila5')">
-                            <img src="../img/carta_bocaabajo.jpg">
-                        </div>
-                        <div class="back">
-                            <img id="carta5" src="">
-                        </div>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="container">
-                    <div id="fila6" class="card">
-                        <div class="front" onclick="mostrarCarta('fila6')">
-                            <img src="../img/carta_bocaabajo.jpg">
-                        </div>
-                        <div class="back">
-                            <img id="carta6" src="">
-                        </div>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="container">
-                    <div id="fila7" class="card">
-                        <div class="front" onclick="mostrarCarta('fila7')">
-                            <img src="../img/carta_bocaabajo.jpg">
-                        </div>
-                        <div class="back">
-                            <img id="carta7" src="">
-                        </div>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="container">
-                    <div id="fila8" class="card">
-                        <div class="front" onclick="mostrarCarta('fila8')">
-                            <img src="../img/carta_bocaabajo.jpg">
-                        </div>
-                        <div class="back">
-                            <img id="carta8" src="">
-                        </div>
-                    </div>
-                </div>
-            </td>
+            <td class="carta2" id="fila5" onclick="mostrarCarta('fila5')"><img id="carta5" src="../img/carta_bocaabajo.jpg"></td>
+            <td class="carta3" id="fila6" onclick="mostrarCarta('fila6')"><img id="carta6" src="../img/carta_bocaabajo.jpg"> </td>
+            <td class="carta4" id="fila7" onclick="mostrarCarta('fila7')"><img id="carta7" src="../img/carta_bocaabajo.jpg"> </td>
+            <td class="carta1" id="fila8" onclick="mostrarCarta('fila8')"><img id="carta8" src="../img/carta_bocaabajo.jpg"> </td>
         </tr>
-    </table>
 
+    </table>
 </body>
 
 </html>
