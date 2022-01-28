@@ -85,7 +85,7 @@ function guardaCartas(fila, cartaDestapada) {
 
         //comprueba si la carta pulsada es la misma y si es asi da un alert
         if (filaCarta1 == filaCarta2) {
-            console.log("entrando en else");
+
             alert("Ha pulsado sobre la misma carta");
             filaCarta2 = undefined;
             contador--;
