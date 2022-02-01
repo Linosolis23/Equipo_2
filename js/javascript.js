@@ -1,8 +1,20 @@
 /*llamamos a todas las funciones*/
+
 function juego() {
     mezclarCartas();
     cronometro();
 }
+
+//creo un constructor cartas, que guarda el id que sera un numero, el girada que será false por defecto y el src de la imagen que será igual al id.
+class Carta {
+    constructor(id, girada) {
+        this.id = id;
+        this.girada = girada;
+        this.src = "../img/carta" + id + ".png";
+    }
+}
+
+const cartasvistas = [];
 
 //variable que cuenta el numero de intentos de juntar las parejas
 var intentos = 0;
@@ -12,6 +24,9 @@ var contador = 0;
 
 // variable con la puntuacion
 var puntuacion = 0;
+
+//creo un array vacio para guardar las cartas
+const cartas = [];
 
 //array para guardar las filas ya destapadas
 const filasCartas = [];
@@ -45,7 +60,30 @@ function mezclarCartas() {
     /*con esta funcion ordenamos el array de modo aleatorio ya que la 2º funcion nos devuelve numeros positivos y negativos
      colocandolos delante de cada valor desordenandolos.
     */
-    lista = lista.sort(function() { return Math.random() - 0.5 });
+
+    //creo una carta con el id que se le pasa 1, 2, 3... y la añado dos veces porque necesitamos dos iguales
+
+    for (var i = 1; i <= 4; i++) {
+        const cart = new Carta(i, false);
+        cartas.push(cart);
+        cartas.push(cart);
+    }
+
+    cartas.concat(cartas);
+    //las ordeno de forma aleatoria
+    cartas.sort((a, b) => 0.5 - Math.random());
+    //recorre el array de cartas e imprime la baraja
+    for (var j = 0; j < cartas.length; j++) {
+        document.getElementById("demo").innerHTML +=
+
+            "<div id=" + cartas[j].id +
+            " status " + cartas[j].status +
+            " src= " + cartas[j].src +
+            "</div></br>";
+        console.log(cartas[j]);
+    }
+
+
 }
 
 //funcion para mostrar las cartas boca arriba
@@ -65,11 +103,12 @@ function ocultarCarta(fila) {
     document.getElementById('carta' + lastChar).src = "../img/carta_bocaabajo.jpg";
 }
 
-//funcion para guardar las variables de las cartas
+//funcion para guardar las variables de las cartas,ESTA ES LA FUNCION CARTAS GIRADAS
 function guardaCartas(fila, cartaDestapada) {
     /*si la variable filaCarta1 no esta definida entra en este if primero
     y la define, cuando esta se encuentra definida entra en el else definiendo la 2º
     */
+
     if (filaCarta1 == undefined) {
         //en esta variable guardamos el numero de la fila clicada
         filaCarta1 = fila;
@@ -100,6 +139,7 @@ function comprobarFinalJuego() {
     if (filasCartas.length == 8) {
         alert("Juego Finalizado con un total de " + intentos + " intentos.");
         alert("Has tardado " + m.innerHTML + ":" + s.innerHTML);
+        alert("tu puntuacion ha sido " + puntuacion);
         alert("Gracias por participar");
 
         document.location.href = "../index.html";
@@ -124,7 +164,7 @@ function comprobarCarta(fila, cartaDestapada) {
             */
             if (comprobanteFila(filaCarta1) == false && comprobanteFila(filaCarta2) == false && filaCarta1 != filaCarta2 && dibujoCarta1 == dibujoCarta2) {
                 //sumamos un punto.
-                puntuacion++;
+                sumarPuntos();
                 //guardamos en el array las filas con las cartas levantadas
                 filasCartas.push(filaCarta1);
                 filasCartas.push(filaCarta2);
@@ -201,4 +241,9 @@ function cronometro() {
         }
         /*1000 milisegundos son 1 segundo*/
         , 1000);
+}
+
+function sumarPuntos() {
+    puntuacion += 2;
+
 }
