@@ -10,11 +10,30 @@
 
 </head>
 
-<body onload="juego()">
+
+<!-- <body onload="juego()"> -->
+<div id="tablero">
+    <input type="text" name="nombre" id="nombrejuga">
+
+      <input type="button" value="establecer name"id="botonnombre"onclick="nombrejugador()" >
+
+    
+    <h1 id="inicio">ᏢᎪᏒᏆᏁᎬᏒ ᎶᎪmᎬ</h1>
+    <br>
+<input type="button" id="inicio" value="jugar" onclick="juego()"> 
+        <!-- <h3 id="inicio" class="inicio_jugar" onclick="juego()">Jugar</h3> -->
+    </div>
+
+<div id="game" style="display:none">
+    <p id="nombreplayer"></p>
+
     <p id="cronometro"> 𝓣𝓘𝓔𝓜𝓟𝓞:
-        <span id="minutos">02</span>:<span id="segundos">00</span>
+      <span id="minutos">02</span>:<span id="segundos">00</span>
+  
     </p>
     <div id="demo"></div>
+</div>
+    
     <script src="../js/javascript.js"></script>
 </body>
 
