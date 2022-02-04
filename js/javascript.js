@@ -1,31 +1,21 @@
 /*llamamos a todas las funciones*/
 
 function juego() {
-    document.getElementById("tablero").setAttribute("style","display: none");
-    document.getElementById("game").style.display="initial";
-    mezclarCartas();
+    iniciarTablero();
+    iniciarCartas();
     cronometro();
 }
 
 var nombre;
-function nombrejugador(){
-nombre=document.getElementById("nombrejuga").value;
-document.getElementById("nombreplayer").innerHTML=nombre;
-// var dificultad = document.getElementById("dificultad").value;
+
+function nombrejugador() {
+    nombre = document.getElementById("nombrejuga").value;
+    document.getElementById("nombreplayer").innerHTML = nombre;
+    // var dificultad = document.getElementById("dificultad").value;
 }
 
-
-
-//creo un constructor cartas, que guarda el id que sera un numero, el girada que será false por defecto y el src de la imagen que será igual al id.
-class Carta {
-    constructor(id, girada) {
-        this.id = id;
-        this.girada = girada;
-        this.src = "../img/carta" + id + ".png";
-    }
-}
-
-const cartasvistas = [];
+//este es el array donde guardamos las cartas que se les ha dado la vuelta
+var cartasvistas = [];
 
 //variable que cuenta el numero de intentos de juntar las parejas
 var intentos = 0;
@@ -39,7 +29,7 @@ var puntuacion = 0;
 //creo un array vacio para guardar las cartas
 const cartas = [];
 
-var girada=false;
+var girada = false;
 
 //array para guardar las filas ya destapadas
 // const filasCartas = [];
@@ -67,12 +57,24 @@ var girada=false;
 //     }
 //     return boleanoFila;
 // }
+//para que recibir el array de cartas
+function iniciarTablero() {
 
+    document.getElementById("tablero").setAttribute("style", "display: none");
+    document.getElementById("game").style.display = "initial";
+}
 //funcion para barajar las cartas
-function mezclarCartas() {
-    /*con esta funcion ordenamos el array de modo aleatorio ya que la 2º funcion nos devuelve numeros positivos y negativos
-     colocandolos delante de cada valor desordenandolos.
-    */
+//funcion que crea las cartas
+function iniciarCartas() {
+
+    //creo un constructor cartas, que guarda el id que sera un numero, el girada que será false por defecto y el src de la imagen que será igual al id.
+    class Carta {
+        constructor(id, girada) {
+            this.id = id;
+            this.girada = girada;
+            this.src = "../img/carta" + id + ".png";
+        }
+    }
 
     //creo una carta con el id que se le pasa 1, 2, 3... y la añado dos veces porque necesitamos dos iguales
 
@@ -83,10 +85,25 @@ function mezclarCartas() {
     }
 
     cartas.concat(cartas);
+    ordenaleatorio();
+
+}
+
+var posicion1 = undefined;
+var posicion2 = undefined;
+
+
+
+function ordenaleatorio() {
+    /*con esta funcion ordenamos el array de modo aleatorio ya que la 2º funcion nos devuelve numeros positivos y negativos
+     colocandolos delante de cada valor desordenandolos.
+    */
+
+
     //las ordeno de forma aleatoria
     cartas.sort((a, b) => 0.5 - Math.random());
     //recorre el array de cartas e imprime la baraja
-    
+
     for (var j = 0; j < cartas.length; j++) {
         document.getElementById("demo").innerHTML +=
 
@@ -94,34 +111,93 @@ function mezclarCartas() {
             // " status " + cartas[j].status +
             // " src= " + cartas[j].src +
             // "</div></br>";
-        "<img id='cartabocaarriba"+j+"' src='"+cartas[j].src+"' onclick='ocultarCarta("+j+")' style= 'display:none'>"+
-        "<img  id='cartabocaabajo"+j+"'src='../img/carta_bocaabajo.jpg' onclick='mostrarCarta("+j+")'>";
 
-        console.log(cartas[j]);
+            "<img id='cartabocaarriba" + j + "' src='" + cartas[j].src + "' onclick='ocultarCarta(" + j + ")' style= 'display:none'>" +
+            "<img  id='cartabocaabajo" + j + "'src='../img/carta_bocaabajo.jpg' onclick='mostrarCarta(" + j + ")'>";
+
+        console.log(j);
     }
 
 
 }
 
-function mostrarCarta(idcarta){
+function mostrarCarta(idcarta) {
+    //asi cambiamos el atributo de la carta entrante
+    //ahora queda borrar el onclick una vez se clica
+    console.log("posicion de la carta en el array " + idcarta);
+    cartas[idcarta].girada = true;
+    console.log("ID de la carta " + cartas[idcarta].id);
+    //asi eliminamos el onclick
+    document.getElementById("cartabocaarriba" + idcarta).removeAttribute("onclick");
 
-document.getElementById("cartabocaarriba"+idcarta).removeAttribute("style");
-document.getElementById("cartabocaabajo"+idcarta).setAttribute("style","display: none");
+    document.getElementById("cartabocaarriba" + idcarta).removeAttribute("style");
+    document.getElementById("cartabocaabajo" + idcarta).setAttribute("style", "display: none");
+
+    //asi volvemos a activar el onclick
+    // document.getElementById("cartabocaarriba" + idcarta).setAttribute("onclick", 'ocultarCarta(' + idcarta + ')');
+
+
+    //FUNCION FUTURA
+
+    cartasGiradas(cartas[idcarta].id, idcarta);
+
 
 }
-function ocultarCarta(idcarta){
-  
-    document.getElementById("cartabocaarriba"+idcarta).setAttribute("style","display: none");
-    document.getElementById("cartabocaabajo"+idcarta).removeAttribute("style");
-   }
+
+function ocultarCarta(idcarta) {
+    console.log("ID de la carta en ocultar carta" + idcarta);
+    cartas[idcarta].girada = false;
 
 
-function comprobarCartasIguales(carta1,carta2){
-          if(cartasvistas[carta1].id==cartasvistas[carta2].id)
-               return true;
 
-        else 
-             return false;
+    document.getElementById("cartabocaarriba" + idcarta).setAttribute("style", "display: none");
+
+    document.getElementById("cartabocaabajo" + idcarta).removeAttribute("style");
+
+    // // asi volvemos a activar el onclick
+    // document.getElementById("cartabocaarriba" + idcarta).setAttribute("onclick", 'ocultarCarta(' + idcarta + ')');
+}
+
+var posicion = [];
+
+function cartasGiradas(idcarta, posicioncarta) {
+
+    console.log(posicion);
+    console.log("Entrando en cartas giradas " + idcarta);
+    cartasvistas.push(idcarta);
+    posicion.push(posicioncarta);
+
+    if (cartasvistas.length == 2) {
+
+        var bolean = comprobarCartas(cartasvistas[0], cartasvistas[1]);
+        if (bolean) {
+            sumarPuntos();
+            //comprobarJuegoFinalizado();
+            cartasvistas = [];
+            posicion = [];
+
+        } else {
+            setTimeout(ocultarCarta, 300, posicion[0]);
+            setTimeout(ocultarCarta, 300, posicion[1]);
+            cartasvistas = [];
+            posicion = [];
+
+        }
+
+    }
+    console.log(cartasvistas);
+}
+
+
+function comprobarCartas(carta1, carta2) {
+
+    console.log(carta1);
+    console.log(carta2);
+    if (carta1 == carta2)
+        return true;
+
+    else
+        return false;
 }
 
 console.log(cartas)
@@ -130,12 +206,12 @@ var carta1;
 var carta2;
 
 
-function seleccionarcarta(){
-if(girada=false){
-carta1=j;
-}else{
-carta2=j;
-}
+function seleccionarcarta() {
+    if (girada = false) {
+        carta1 = j;
+    } else {
+        carta2 = j;
+    }
 
 }
 
@@ -278,11 +354,12 @@ function cronometro() {
                 min--;
 
             }
-            if (min == 00 && seg == 01) {
+            //QUITARLO LUEGO
+            // if (min == 00 && seg == 01) {
 
-                alert("GAME OVER El tiempo llegó a 0");
-                document.location.href = "../index.html";
-            }
+            //     alert("GAME OVER El tiempo llegó a 0");
+            //     document.location.href = "../index.html";
+            // }
             /*convertimos los segundos en 2 digitos*/
             /*esto hace que hasta que no sea 9 haya un 0 a la izquierda*/
             var segundos = seg <= 9 ? '0' + seg : seg;
@@ -296,7 +373,7 @@ function cronometro() {
         , 1000);
 }
 
-// function sumarPuntos() {
-//     puntuacion += 2;
+function sumarPuntos() {
+    puntuacion += 2;
 
-// }
+}
