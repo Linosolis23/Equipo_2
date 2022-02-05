@@ -2,11 +2,32 @@
 
 function juego() {
     iniciarTablero();
-    iniciarCartas();
     cronometro();
+    niveles();
+    iniciarCartas();
 }
 
 var nombre;
+var dificultad;
+var numtotalcartas;
+
+function niveles() {
+    dificultad = document.getElementById("dificultad").value;
+    if (dificultad == 1) {
+        console.log(dificultad);
+        numtotalcartas = 3;
+        console.log(numtotalcartas);
+    } else if (dificultad == 2) {
+        numtotalcartas = 4;
+    } else if (dificultad == 3) {
+        numtotalcartas = 5;
+    } else if (dificultad == 4) {
+        numtotalcartas = 7;
+    }
+    console.log(numtotalcartas);
+
+
+}
 
 function nombrejugador() {
     nombre = document.getElementById("nombrejuga").value;
@@ -29,7 +50,7 @@ var puntuacion = 0;
 //creo un array vacio para guardar las cartas
 const cartas = [];
 
-var girada = false;
+
 
 //array para guardar las filas ya destapadas
 // const filasCartas = [];
@@ -66,6 +87,7 @@ function iniciarTablero() {
 //funcion para barajar las cartas
 //funcion que crea las cartas
 function iniciarCartas() {
+    console.log(numtotalcartas);
 
     //creo un constructor cartas, que guarda el id que sera un numero, el girada que será false por defecto y el src de la imagen que será igual al id.
     class Carta {
@@ -78,7 +100,7 @@ function iniciarCartas() {
 
     //creo una carta con el id que se le pasa 1, 2, 3... y la añado dos veces porque necesitamos dos iguales
 
-    for (var i = 1; i <= 4; i++) {
+    for (var i = 1; i <= numtotalcartas; i++) {
         const cart = new Carta(i, false);
         cartas.push(cart);
         cartas.push(cart);
@@ -89,8 +111,7 @@ function iniciarCartas() {
 
 }
 
-var posicion1 = undefined;
-var posicion2 = undefined;
+
 
 
 
@@ -176,7 +197,7 @@ function cartasGiradas(idcarta, posicioncarta) {
             cartasvistas = [];
             posicion = [];
             console.log(puntuacion);
-            setTimeout(terminarjuego, 200);          
+            setTimeout(terminarjuego, 200);
 
         } else {
             setTimeout(ocultarCarta, 300, posicion[0]);
@@ -216,14 +237,35 @@ function seleccionarcarta() {
     }
 
 }
-    function terminarjuego(){
-        if(puntuacion==8){
-            alert("YOU WIN");
-            document.location.href = "index.html";
 
+function terminarjuego() {
+    //terminamos juego mediante puntuacion
+    // if (puntuacion == 8) {
+    //     alert("YOU WIN");
+    //     document.location.href = "index.html";
+
+    // }
+
+    //DE ESTA MANERA SE TERMINA EL JUEGO CON EL TOTAL DE CARTAS
+    var contadorCartas = 0;
+    for (let index = 0; index < cartas.length; index++) {
+
+        if (cartas[index].girada == true) {
+
+            contadorCartas++;
+            console.log(contadorCartas);
         }
+
     }
-   
+    console.log(contadorCartas);
+    console.log(cartas.length);
+    if (contadorCartas == cartas.length) {
+        alert("YOU WIN");
+        document.location.href = "index.html";
+
+    }
+}
+
 
 //funcion para mostrar las cartas boca arriba
 // function mostrarCarta(fila) {
