@@ -79,6 +79,10 @@ const cartas = [];
 //     return boleanoFila;
 // }
 //para que recibir el array de cartas
+
+//es un array con el id de las cartas de modo que estan todos sus numeros aqui
+var idsaleatorios = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
 function iniciarTablero() {
 
     document.getElementById("tablero").setAttribute("style", "display: none");
@@ -87,7 +91,6 @@ function iniciarTablero() {
 //funcion para barajar las cartas
 //funcion que crea las cartas
 function iniciarCartas() {
-    console.log(numtotalcartas);
 
     //creo un constructor cartas, que guarda el id que sera un numero, el girada que será false por defecto y el src de la imagen que será igual al id.
     class Carta {
@@ -98,10 +101,13 @@ function iniciarCartas() {
         }
     }
 
+    //desordenamos el array de id de cartas 
+    idsaleatorios.sort((a, b) => 0.5 - Math.random());
+
     //creo una carta con el id que se le pasa 1, 2, 3... y la añado dos veces porque necesitamos dos iguales
 
     for (var i = 1; i <= numtotalcartas; i++) {
-        const cart = new Carta(i, false);
+        const cart = new Carta(idsaleatorios[i], false);
         cartas.push(cart);
         cartas.push(cart);
     }
@@ -136,7 +142,7 @@ function ordenaleatorio() {
             "<img id='cartabocaarriba" + j + "' src='" + cartas[j].src + "' onclick='ocultarCarta(" + j + ")' style= 'display:none'>" +
             "<img  id='cartabocaabajo" + j + "'src='../img/carta_bocaabajo.jpg' onclick='mostrarCarta(" + j + ")'>";
 
-        console.log(j);
+
     }
 
 
@@ -166,7 +172,7 @@ function mostrarCarta(idcarta) {
 }
 
 function ocultarCarta(idcarta) {
-    console.log("ID de la carta en ocultar carta" + idcarta);
+
     cartas[idcarta].girada = false;
 
 
