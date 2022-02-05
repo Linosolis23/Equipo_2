@@ -13,14 +13,15 @@
 
 <!-- <body onload="juego()"> -->
 <div id="tablero">
+    <p>Añadir nombre del jugador:</p>
     <input type="text" name="nombre" id="nombrejuga">
 
-    <input type="button" value="establecer name" id="botonnombre" onclick="nombrejugador()">
+    <!-- <input type="button" value="establecer name" id="botonnombre" onclick="nombrejugador()"> -->
 
 
     <h1 id="inicio">ᏢᎪᏒᏆᏁᎬᏒ ᎶᎪmᎬ</h1>
     <br>
-    <input type="button" id="inicio" value="jugar" onclick="juego()">
+    <input type="button" id="inicio" value="jugar" onclick="juego(),nombrejugador()">
     <!-- <h3 id="inicio" class="inicio_jugar" onclick="juego()">Jugar</h3> -->
 </div>
 

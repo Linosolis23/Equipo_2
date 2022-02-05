@@ -8,7 +8,10 @@ img {
 
 
 /*Fondo del juego*/
+p{
+color: var(--color_inicio);
 
+}
 body {
     /*color letras inicio*/
     --color_inicio: rgb(251, 236, 15);
