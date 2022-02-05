@@ -175,6 +175,8 @@ function cartasGiradas(idcarta, posicioncarta) {
             //comprobarJuegoFinalizado();
             cartasvistas = [];
             posicion = [];
+            console.log(puntuacion);
+            setTimeout(terminarjuego, 200);          
 
         } else {
             setTimeout(ocultarCarta, 300, posicion[0]);
@@ -214,6 +216,14 @@ function seleccionarcarta() {
     }
 
 }
+    function terminarjuego(){
+        if(puntuacion==8){
+            alert("YOU WIN");
+            document.location.href = "index.html";
+
+        }
+    }
+   
 
 //funcion para mostrar las cartas boca arriba
 // function mostrarCarta(fila) {
@@ -355,11 +365,11 @@ function cronometro() {
 
             }
             //QUITARLO LUEGO
-            // if (min == 00 && seg == 01) {
+            if (min == 00 && seg == 01) {
 
-            //     alert("GAME OVER El tiempo llegó a 0");
-            //     document.location.href = "../index.html";
-            // }
+                alert("GAME OVER El tiempo llegó a 0");
+                document.location.href = "index.html";
+            }
             /*convertimos los segundos en 2 digitos*/
             /*esto hace que hasta que no sea 9 haya un 0 a la izquierda*/
             var segundos = seg <= 9 ? '0' + seg : seg;

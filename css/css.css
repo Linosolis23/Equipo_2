@@ -22,15 +22,30 @@ body {
 
 /*tablero en el que estarán las cartas*/
 
-table#tablero {
-    background: var(--color_principal);
-    border: black 2px solid;
+#tablerojuego {
+  
     width: 950px;
     height: 650px;
     padding: 20px;
     margin: 0px auto;
 }
 
+
+
+@media screen and (max-width:800px){
+    #tablerojuego {
+  
+        width: auto;
+        height: 650px;
+        padding: 20px;
+        margin: 0px auto;
+    }
+    img {
+        width: 150px;
+        height: 200px;
+        border:1px solid #000;
+    }
+}
 
 /*texto y color de la palabra jugar*/
 
@@ -78,4 +93,7 @@ p#cronometro {
 
 h2#nombreplayer {
     text-align: center;
+    color: var(--color_inicio);
+    font-size: 24px;
 }
+
