@@ -387,3 +387,13 @@ function sumarPuntos() {
     puntuacion += 2;
 
 }
+const button = document.querySelector('#botonnombre');
+
+button.addEventListener('click', disableButton);
+
+function disableButton() {
+  button.disabled = true;
+  button.value = 'nombre introducido';
+
+  
+}
