@@ -52,11 +52,18 @@ body {
 
 /*texto y color de la palabra jugar*/
 
-h3#inicio {
-    text-align: center;
+input#inicio {
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0 auto;
     color: var(--color_inicio);
     font-size: 40px;
     line-height: 70px;
+    width: 200px;
+    height: 100px;
+    border-radius: 100px/50px;
 }
 
 
