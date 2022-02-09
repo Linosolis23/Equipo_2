@@ -5,15 +5,36 @@ function juego() {
     cronometro();
     niveles();
     iniciarCartas();
+    // guardarPuntuacion()
 }
 
 var nombre;
 var dificultad;
 var numtotalcartas;
-
 /*variables de tiempo*/
 var min;
 var seg;
+
+
+
+function nombrejugador() {
+    nombre = document.getElementById("nombrejuga").value;
+    document.getElementById("nombreplayer").innerHTML = nombre;
+    // var dificultad = document.getElementById("dificultad").value;
+}
+
+function guardarPuntuacion() {
+
+    if (localStorage.getItem(nombre)!="undefined") {
+    console.log("estas en el if");
+        var puntuaciontotal = parseInt(puntuaciontotal);
+        var puntuaciontotal = parseInt(localStorage.getItem(nombre)) + parseInt(puntuacion);
+        localStorage.setItem(nombre,puntuaciontotal);
+    } else {
+        localStorage.setItem(nombre,puntuacion);
+        console.log("estas en el else");
+    }
+}
 
 function niveles() {
     dificultad = document.getElementById("dificultad").value;
@@ -47,11 +68,6 @@ function niveles() {
 
 }
 
-function nombrejugador() {
-    nombre = document.getElementById("nombrejuga").value;
-    document.getElementById("nombreplayer").innerHTML = nombre;
-    // var dificultad = document.getElementById("dificultad").value;
-}
 
 //este es el array donde guardamos las cartas que se les ha dado la vuelta
 var cartasvistas = [];
@@ -223,6 +239,7 @@ function terminarjuego() {
         alert("Te quedó de tiempo: " + m.innerHTML + ":" + s.innerHTML);
         alert("tu puntuacion ha sido " + puntuacion);
         alert("Gracias por participar");
+        guardarPuntuacion();
         document.location.href = "index.html";
 
     }
