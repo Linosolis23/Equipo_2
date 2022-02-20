@@ -25,46 +25,41 @@ function nombrejugador() {
 
 function guardarPuntuacion() {
 
-    if (localStorage.getItem(nombre)!="undefined") {
-    console.log("estas en el if");
-        var puntuaciontotal = parseInt(puntuaciontotal);
+    if (localStorage.getItem(nombre) != null) {
         var puntuaciontotal = parseInt(localStorage.getItem(nombre)) + parseInt(puntuacion);
-        localStorage.setItem(nombre,puntuaciontotal);
+        localStorage.setItem(nombre, puntuaciontotal);
     } else {
-        localStorage.setItem(nombre,puntuacion);
-        console.log("estas en el else");
+        localStorage.setItem(nombre, puntuacion);
     }
 }
 
 function niveles() {
     dificultad = document.getElementById("dificultad").value;
-   
+
     if (dificultad == 1) {
-        console.log(dificultad);
+
         numtotalcartas = 3;
-        min=1;
-        seg=60;
-        puntuaciontotal=6;
-       console.log(numtotalcartas);
+        min = 1;
+        seg = 60;
+        puntuaciontotal = 6;
+
     } else if (dificultad == 2) {
         numtotalcartas = 4;
-        min=1;
-        seg=60;
-        puntuaciontotal=8;
+        min = 1;
+        seg = 60;
+        puntuaciontotal = 8;
 
     } else if (dificultad == 3) {
         numtotalcartas = 5;
-        min=2;
-        seg=60;
-        puntuaciontotal=10;
+        min = 2;
+        seg = 60;
+        puntuaciontotal = 10;
     } else if (dificultad == 4) {
         numtotalcartas = 7;
-        min=2;
-        seg=60;
-        puntuaciontotal=14;
+        min = 2;
+        seg = 60;
+        puntuaciontotal = 14;
     }
-    console.log(numtotalcartas);
-
 
 }
 
@@ -146,9 +141,9 @@ function ordenaleatorio() {
 function mostrarCarta(idcarta) {
     //asi cambiamos el atributo de la carta entrante
     //ahora queda borrar el onclick una vez se clica
-    console.log("posicion de la carta en el array " + idcarta);
+
     cartas[idcarta].girada = true;
-    console.log("ID de la carta " + cartas[idcarta].id);
+
     //asi eliminamos el onclick
     document.getElementById("cartabocaarriba" + idcarta).removeAttribute("onclick");
 
@@ -178,8 +173,8 @@ var posicion = [];
 
 function cartasGiradas(idcarta, posicioncarta) {
 
-    console.log(posicion);
-    console.log("Entrando en cartas giradas " + idcarta);
+
+
     cartasvistas.push(idcarta);
     posicion.push(posicioncarta);
 
@@ -190,8 +185,8 @@ function cartasGiradas(idcarta, posicioncarta) {
             sumarPuntos();
             cartasvistas = [];
             posicion = [];
-            
-            console.log(puntuacion);
+
+
             setTimeout(terminarjuego, 200);
 
         } else {
@@ -203,14 +198,12 @@ function cartasGiradas(idcarta, posicioncarta) {
         }
 
     }
-    console.log(cartasvistas);
+
 }
 
 
 function comprobarCartas(carta1, carta2) {
 
-    console.log(carta1);
-    console.log(carta2);
     if (carta1 == carta2)
         return true;
 
@@ -218,7 +211,7 @@ function comprobarCartas(carta1, carta2) {
         return false;
 }
 
-console.log(cartas)
+
 
 var carta1;
 var carta2;
@@ -235,7 +228,7 @@ function seleccionarcarta() {
 
 function terminarjuego() {
 
-    if (puntuacion==puntuaciontotal){
+    if (puntuacion == puntuaciontotal) {
         alert("Te quedó de tiempo: " + m.innerHTML + ":" + s.innerHTML);
         alert("tu puntuacion ha sido " + puntuacion);
         alert("Gracias por participar");
@@ -246,27 +239,27 @@ function terminarjuego() {
 
 
     //DE ESTA MANERA SE TERMINA EL JUEGO CON EL TOTAL DE CARTAS
-//     var contadorCartas = 0;
-//     for (let index = 0; index < cartas.length; index++) {
+    //     var contadorCartas = 0;
+    //     for (let index = 0; index < cartas.length; index++) {
 
-//         if (cartas[index].girada == true) {
+    //         if (cartas[index].girada == true) {
 
-//             contadorCartas++;
-//             console.log(contadorCartas);
-//         }
+    //             contadorCartas++;
+    //             console.log(contadorCartas);
+    //         }
 
-//     }
-//     console.log(contadorCartas);
-//     console.log(cartas.length);
-//     if (contadorCartas == cartas.length) {
-//         alert("YOU WIN");
-//         document.location.href = "index.html";
+    //     }
+    //     console.log(contadorCartas);
+    //     console.log(cartas.length);
+    //     if (contadorCartas == cartas.length) {
+    //         alert("YOU WIN");
+    //         document.location.href = "index.html";
 
-//     }
+    //     }
 }
 // /*creamos la funcion cronometro*/
 function cronometro() {
- 
+
     /*ingresamos los valores en el html*/
     s = document.getElementById("segundos");
     m = document.getElementById("minutos");
